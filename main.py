@@ -50,5 +50,4 @@ while not done:
             pygame.draw.line(Display, (255, 255, 255), (i * 20 + 20, j * 20), (i * 20, j * 20))
 
     pygame.display.flip()
-
 pygame.quit()
