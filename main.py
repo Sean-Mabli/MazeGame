@@ -32,6 +32,7 @@ while not done:
 
       if(pygame.mouse.get_pressed()[0] == True and StartButton.collidepoint(pygame.mouse.get_pos())):
         Screen = 'game'
+        
     if(Screen == 'game'):
       Display.fill((0, 0, 0))
 
