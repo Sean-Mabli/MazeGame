@@ -5,8 +5,8 @@ import time
 Display = pygame.display.set_mode([501, 501])
 Screen = 'start'
 
-PlayerX = 23
-PlayerY = 24
+PlayerX = 0
+PlayerY = 0
 
 pygame.init()
 pygame.display.set_caption('Maze Game')
@@ -111,7 +111,7 @@ while not done:
 
     if(Screen == 'end'):
       Display.fill((0, 0, 0))
-      
+
       StartButton = pygame.draw.rect(Display, (255, 255, 255), (150, 300, 200, 60),  2)
       Display.blit(pygame.font.SysFont("Raleway", 70).render("Maze Completed", 1, (255, 255, 255)), (50, 150))
       Display.blit(pygame.font.SysFont("Raleway", 70).render("In " + str(EndTime)[0:5] + " Seconds", 1, (255, 255, 255)), (50, 215))
