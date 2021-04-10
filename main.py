@@ -16,10 +16,9 @@ Stack = []
 Stack.append((CurrentX, CurrentY))
 
 pygame.init()
+pygame.display.set_caption('Maze Game - Sean Mabli')
 
 done = False
-
-pygame.display.set_caption('Maze Game - Sean Mabli')
 
 while(625 - np.sum(VisitedBoxes) != 0):
   VisitedBoxes[CurrentX, CurrentY] = 1
