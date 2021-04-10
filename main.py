@@ -1,7 +1,5 @@
 import pygame
 import numpy as np
-import time
-import sys
 
 Display = pygame.display.set_mode([501, 501])
 Screen = 'game'
@@ -58,6 +56,7 @@ while not done:
 
       if(sum(OpenBoxes) == 0):
         (CurrentX, CurrentY) = Stack.pop()
+        (CurrentX, CurrentY) = Stack.pop()
       else:
         if(Random == 0):
           Wall[0, CurrentX, CurrentY] = 0
@@ -78,8 +77,6 @@ while not done:
 
       for i in range(int(500 / 20)):
         for j in range(int(500 / 20)):
-          # if(VisitedBoxes[i, j] == 1):
-          #   pygame.draw.rect(Display, (255, 255, 255), (i * 20, j * 20, 20, 20))
           if (Wall[0, i, j] == 1):
             pygame.draw.line(Display, (255, 255, 255), (i * 20, j * 20), (i * 20 + 20, j * 20))
           if (Wall[1, i, j] == 1):
