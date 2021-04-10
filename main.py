@@ -120,8 +120,10 @@ while not done:
       if(pygame.mouse.get_pressed()[0] == True and StartButton.collidepoint(pygame.mouse.get_pos())):
         PlayerX = 0
         PlayerY = 0
+        StartTime = time.time()
         Wall = GenerateMaze()
         Screen = 'game'
 
     pygame.display.flip()
+
 pygame.quit()
