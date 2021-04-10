@@ -4,8 +4,8 @@ import numpy as np
 Display = pygame.display.set_mode([501, 501])
 Screen = 'start'
 
-PlayerX = 23
-PlayerY = 24
+PlayerX = 0
+PlayerY = 0
 
 pygame.init()
 pygame.display.set_caption('Maze Game')
@@ -113,6 +113,9 @@ while not done:
       Display.blit(pygame.font.SysFont("Raleway", 40).render("Play Again", 1, (255, 255, 255)), (180, 317))
 
       if(pygame.mouse.get_pressed()[0] == True and StartButton.collidepoint(pygame.mouse.get_pos())):
+        PlayerX = 0
+        PlayerY = 0
+        Wall = GenerateMaze()
         Screen = 'game'
 
     pygame.display.flip()
