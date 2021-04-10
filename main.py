@@ -1,11 +1,12 @@
 import pygame
 import numpy as np
+import time
 
 Display = pygame.display.set_mode([501, 501])
 Screen = 'start'
 
-PlayerX = 0
-PlayerY = 0
+PlayerX = 23
+PlayerY = 24
 
 pygame.init()
 pygame.display.set_caption('Maze Game')
@@ -77,6 +78,7 @@ while not done:
 
       if(pygame.mouse.get_pressed()[0] == True and StartButton.collidepoint(pygame.mouse.get_pos())):
         Screen = 'game'
+        StartTime = time.time()
 
     if(Screen == 'game'):
       Display.fill((0, 0, 0))
@@ -105,11 +107,14 @@ while not done:
 
       if(PlayerX == 24 and PlayerY == 24):
         Screen = 'end'
+        EndTime = time.time() - StartTime
 
     if(Screen == 'end'):
       Display.fill((0, 0, 0))
+      
       StartButton = pygame.draw.rect(Display, (255, 255, 255), (150, 300, 200, 60),  2)
-      Display.blit(pygame.font.SysFont("Raleway", 70).render("Maze Completed", 1, (255, 255, 255)), (50, 200))
+      Display.blit(pygame.font.SysFont("Raleway", 70).render("Maze Completed", 1, (255, 255, 255)), (50, 150))
+      Display.blit(pygame.font.SysFont("Raleway", 70).render("In " + str(EndTime)[0:5] + " Seconds", 1, (255, 255, 255)), (50, 215))
       Display.blit(pygame.font.SysFont("Raleway", 40).render("Play Again", 1, (255, 255, 255)), (180, 317))
 
       if(pygame.mouse.get_pressed()[0] == True and StartButton.collidepoint(pygame.mouse.get_pos())):
