@@ -2,7 +2,7 @@ import pygame
 import numpy as np
 
 Display = pygame.display.set_mode([501, 501])
-Screen = 'end'
+Screen = 'start'
 
 PlayerX = 0
 PlayerY = 0
@@ -87,6 +87,9 @@ while not done:
             pygame.draw.line(Display, (255, 255, 255), (i * 20 + 20, j * 20 + 20), (i * 20, j * 20 + 20))
           if (Wall[3, i, j] == 1):
             pygame.draw.line(Display, (255, 255, 255), (i * 20, j * 20 + 20), (i * 20, j *20))
+    
+    if(PlayerX == 24 and PlayerY == 24):
+      Screen == 'end'
 
     if(Screen == 'end'):
       Display.fill((0, 0, 0))
