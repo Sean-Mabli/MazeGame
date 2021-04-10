@@ -93,7 +93,8 @@ while not done:
         if (event.key == pygame.K_LEFT and Wall[3, PlayerX, PlayerY] == 0):
           PlayerX -= 1
           
-      pygame.draw.rect(Display, (255, 255, 255), (PlayerX * 20, PlayerY * 20, 20, 20))
+      pygame.draw.rect(Display, (255, 255, 255), (PlayerX * 20 + 2, PlayerY * 20 + 2, 16, 16))
+      pygame.draw.rect(Display, (255, 255, 255), (485, 485, 10, 10))
       for i in range(int(500 / 20)):
         for j in range(int(500 / 20)):
           if (Wall[0, i, j] == 1):
