@@ -2,7 +2,7 @@ import pygame
 import numpy as np
 
 Display = pygame.display.set_mode([501, 501])
-Screen = 'start'
+Screen = 'end'
 
 PlayerX = 0
 PlayerY = 0
@@ -91,7 +91,7 @@ while not done:
     if(Screen == 'end'):
       Display.fill((0, 0, 0))
       StartButton = pygame.draw.rect(Display, (255, 255, 255), (150, 300, 200, 60),  2)
-      Display.blit(pygame.font.SysFont("Raleway", 70).render("Maze Completed", 1, (255, 255, 255)), (115, 200))
+      Display.blit(pygame.font.SysFont("Raleway", 70).render("Maze Completed", 1, (255, 255, 255)), (50, 200))
       Display.blit(pygame.font.SysFont("Raleway", 40).render("Play Again", 1, (255, 255, 255)), (180, 317))
 
       if(pygame.mouse.get_pressed()[0] == True and StartButton.collidepoint(pygame.mouse.get_pos())):
