@@ -57,25 +57,24 @@ while not done:
       print(sum(OpenBoxes))
 
       if(sum(OpenBoxes) == 0):
-        while True:
-          w = 0
-
-      if(Random == 0):
-        Wall[0, CurrentX, CurrentY] = 0
-        Wall[2, CurrentX, CurrentY - 1] = 0
-        CurrentY -= 1
-      elif(Random == 1):
-        Wall[1, CurrentX, CurrentY] = 0
-        Wall[3, CurrentX + 1, CurrentY] = 0
-        CurrentX += 1
-      elif(Random == 2):
-        Wall[2, CurrentX, CurrentY] = 0
-        Wall[0, CurrentX, CurrentY + 1] = 0
-        CurrentY += 1
-      elif(Random == 3):
-        Wall[3, CurrentX, CurrentY] = 0
-        Wall[1, CurrentX - 1, CurrentY] = 0
-        CurrentX -= 1
+        (CurrentX, CurrentY) = Stack.pop()
+      else:
+        if(Random == 0):
+          Wall[0, CurrentX, CurrentY] = 0
+          Wall[2, CurrentX, CurrentY - 1] = 0
+          CurrentY -= 1
+        elif(Random == 1):
+          Wall[1, CurrentX, CurrentY] = 0
+          Wall[3, CurrentX + 1, CurrentY] = 0
+          CurrentX += 1
+        elif(Random == 2):
+          Wall[2, CurrentX, CurrentY] = 0
+          Wall[0, CurrentX, CurrentY + 1] = 0
+          CurrentY += 1
+        elif(Random == 3):
+          Wall[3, CurrentX, CurrentY] = 0
+          Wall[1, CurrentX - 1, CurrentY] = 0
+          CurrentX -= 1
 
       for i in range(int(500 / 20)):
         for j in range(int(500 / 20)):
