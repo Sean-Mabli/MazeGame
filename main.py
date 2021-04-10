@@ -3,7 +3,7 @@ import numpy as np
 import time
 import sys
 
-Display = pygame.display.set_mode([500, 500])
+Display = pygame.display.set_mode([501, 501])
 Screen = 'game'
 
 PlayerX = 0
@@ -14,6 +14,7 @@ CurrentY = 0
 
 Wall = np.ones((4, int(500 / 20), int(500 / 20)))
 VisitedBoxes = np.zeros((500, 500))
+Stack = []
 
 pygame.init()
 
@@ -38,6 +39,7 @@ while not done:
 
       VisitedBoxes[CurrentX, CurrentY] = 1
       OpenBoxes = np.zeros((4))
+      Stack.append((CurrentX, CurrentY))
 
       if(VisitedBoxes[CurrentX, CurrentY - 1]  == 0 and CurrentY != 0): # Top
         OpenBoxes[0] = 1
@@ -59,26 +61,34 @@ while not done:
           w = 0
 
       if(Random == 0):
+        Wall[0, CurrentX, CurrentY] = 0
+        Wall[2, CurrentX, CurrentY - 1] = 0
         CurrentY -= 1
       elif(Random == 1):
+        Wall[1, CurrentX, CurrentY] = 0
+        Wall[3, CurrentX + 1, CurrentY] = 0
         CurrentX += 1
       elif(Random == 2):
+        Wall[2, CurrentX, CurrentY] = 0
+        Wall[0, CurrentX, CurrentY + 1] = 0
         CurrentY += 1
       elif(Random == 3):
+        Wall[3, CurrentX, CurrentY] = 0
+        Wall[1, CurrentX - 1, CurrentY] = 0
         CurrentX -= 1
 
       for i in range(int(500 / 20)):
         for j in range(int(500 / 20)):
-          if(VisitedBoxes[i, j] == 1):
-            pygame.draw.rect(Display, (255, 255, 255), (i * 20, j * 20, 20, 20))
+          # if(VisitedBoxes[i, j] == 1):
+          #   pygame.draw.rect(Display, (255, 255, 255), (i * 20, j * 20, 20, 20))
           if (Wall[0, i, j] == 1):
-            pygame.draw.line(Display, (255, 255, 255), (i * 20, j * 20), (i * 20, j * 20 + 20))
+            pygame.draw.line(Display, (255, 255, 255), (i * 20, j * 20), (i * 20 + 20, j * 20))
           if (Wall[1, i, j] == 1):
-            pygame.draw.line(Display, (255, 255, 255), (i * 20, j * 20 + 20), (i * 20 + 20, j * 20 + 20))
+            pygame.draw.line(Display, (255, 255, 255), (i * 20 + 20, j * 20), (i * 20 + 20, j * 20 + 20))
           if (Wall[2, i, j] == 1):
-            pygame.draw.line(Display, (255, 255, 255), (i * 20 + 20, j * 20 + 20), (i * 20 + 20, j * 20))
+            pygame.draw.line(Display, (255, 255, 255), (i * 20 + 20, j * 20 + 20), (i * 20, j * 20 + 20))
           if (Wall[3, i, j] == 1):
-            pygame.draw.line(Display, (255, 255, 255), (i * 20 + 20, j * 20), (i * 20, j * 20))
+            pygame.draw.line(Display, (255, 255, 255), (i * 20, j * 20 + 20), (i * 20, j * 20))
 
     if(Screen == 'end'):
       Display.fill((0, 0, 0))
