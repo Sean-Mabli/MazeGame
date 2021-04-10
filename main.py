@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
 import time
+import sys
 
 Display = pygame.display.set_mode([500, 500])
 Screen = 'game'
@@ -33,7 +34,6 @@ while not done:
       if(pygame.mouse.get_pressed()[0] == True and StartButton.collidepoint(pygame.mouse.get_pos())):
         Screen = 'game'
     if(Screen == 'game'):
-      time.sleep(1)
       Display.fill((0, 0, 0))
 
       VisitedBoxes[CurrentX, CurrentY] = 1
@@ -54,8 +54,9 @@ while not done:
       
       print(sum(OpenBoxes))
 
-      if(np.sum(OpenBoxes) == 0):
-        done = True
+      if(sum(OpenBoxes) == 0):
+        while True:
+          w = 0
 
       if(Random == 0):
         CurrentY -= 1
