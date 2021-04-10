@@ -78,13 +78,13 @@ while not done:
       Display.fill((0, 0, 0))
 
       if event.type == pygame.KEYDOWN:
-        if (event.key == pygame.K_UP):
+        if (event.key == pygame.K_UP and Wall[0, PlayerX, PlayerY] == 0):
           PlayerY -= 1
-        if (event.key == pygame.K_RIGHT):
+        if (event.key == pygame.K_RIGHT and Wall[1, PlayerX, PlayerY] == 0):
           PlayerX += 1
-        if (event.key == pygame.K_DOWN):
+        if (event.key == pygame.K_DOWN and Wall[2, PlayerX, PlayerY] == 0):
           PlayerY += 1
-        if (event.key == pygame.K_LEFT):
+        if (event.key == pygame.K_LEFT and Wall[3, PlayerX, PlayerY] == 0):
           PlayerX -= 1
           
       pygame.draw.rect(Display, (255, 255, 255), (PlayerX * 20, PlayerY * 20, 20, 20))
