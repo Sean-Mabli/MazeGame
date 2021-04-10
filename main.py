@@ -1,5 +1,6 @@
 import pygame
 import numpy as np
+import time
 
 Display = pygame.display.set_mode([500, 500])
 Screen = 'game'
@@ -10,12 +11,14 @@ PlayerY = 0
 CurrentX = 0
 CurrentY = 0
 
+Wall = np.ones((4, int(500 / 20), int(500 / 20)))
+VisitedBoxes = np.zeros((500, 500))
+
 pygame.init()
 
 done = False
 
 pygame.display.set_caption('Maze Game - Sean Mabli')
-
 
 while not done:
   for event in pygame.event.get():
@@ -30,10 +33,38 @@ while not done:
       if(pygame.mouse.get_pressed()[0] == True and StartButton.collidepoint(pygame.mouse.get_pos())):
         Screen = 'game'
     if(Screen == 'game'):
+      time.sleep(1)
       Display.fill((0, 0, 0))
 
-      Wall = np.ones((4, int(500 / 20), int(500 / 20)))
-      VisitedBoxes = np.ones((500, 500))
+      VisitedBoxes[CurrentX, CurrentY] = 1
+      OpenBoxes = np.zeros((4))
+
+      if(VisitedBoxes[CurrentX, CurrentY - 1]  == 0 and CurrentY != 0): # Top
+        OpenBoxes[0] = 1
+      if(VisitedBoxes[CurrentX + 1, CurrentY]  == 0 and CurrentX != 24): # Right
+        OpenBoxes[1] = 1
+      if(VisitedBoxes[CurrentX, CurrentY + 1]  == 0 and CurrentY != 24): # Down
+        OpenBoxes[2] = 1
+      if(VisitedBoxes[CurrentX - 1, CurrentY]  == 0 and CurrentX != 0): # Right
+        OpenBoxes[3] = 1
+
+      Random = np.random.randint(0, 4)
+      while (OpenBoxes[Random] != 1 and np.sum(OpenBoxes) != 0):
+        Random = np.random.randint(0, 4)
+      
+      print(sum(OpenBoxes))
+
+      if(np.sum(OpenBoxes) == 0):
+        done = True
+
+      if(Random == 0):
+        CurrentY -= 1
+      elif(Random == 1):
+        CurrentX += 1
+      elif(Random == 2):
+        CurrentY += 1
+      elif(Random == 3):
+        CurrentX -= 1
 
       for i in range(int(500 / 20)):
         for j in range(int(500 / 20)):
